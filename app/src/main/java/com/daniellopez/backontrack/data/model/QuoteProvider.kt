@@ -1,8 +1,10 @@
 package com.daniellopez.backontrack.data.model
 
-class QuoteProvider {
-    companion object {//static
+import javax.inject.Inject
+import javax.inject.Singleton
 
-        var quotes: List<QuoteModel> = emptyList()
-    }
+@Singleton
+class QuoteProvider @Inject constructor() {
+    //acts as a small DB
+    var quotes: List<QuoteModel> = emptyList()
 }

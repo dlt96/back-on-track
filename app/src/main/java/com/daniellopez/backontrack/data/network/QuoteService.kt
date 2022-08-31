@@ -1,19 +1,18 @@
 package com.daniellopez.backontrack.data.network
 
-import com.daniellopez.backontrack.core.RetrofitHelper
 import com.daniellopez.backontrack.data.model.QuoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class QuoteService {
-
-    private val retrofit = RetrofitHelper.getRetrofit()
+class QuoteService @Inject constructor(
+    private val api: QuoteApiClient
+) {
 
     suspend fun getQuotes(): List<QuoteModel> {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(QuoteApiClient::class.java).getAllQuotes()
+            val response = api.getAllQuotes()
             response.body() ?: emptyList()
         }
-
     }
 }

@@ -3,14 +3,16 @@ package com.daniellopez.backontrack.data
 import com.daniellopez.backontrack.data.model.QuoteModel
 import com.daniellopez.backontrack.data.model.QuoteProvider
 import com.daniellopez.backontrack.data.network.QuoteService
+import javax.inject.Inject
 
-class QuoteRepository {
+class QuoteRepository @Inject constructor(
+    private val api: QuoteService,
+    private val quoteProvider: QuoteProvider
+) {
 
-    private val api = QuoteService()
-
-    suspend fun getAllQuotes():List<QuoteModel> {
+    suspend fun getAllQuotes(): List<QuoteModel> {
         val response = api.getQuotes()
-        QuoteProvider.quotes = response // acts as a small DB
+        quoteProvider.quotes = response // acts as a small DB
         return response
     }
 }
