@@ -8,4 +8,4 @@ import com.daniellopez.backontrack.data.database.entity.QuoteEntity
 @Database(entities = [QuoteEntity::class], version = 1)
 abstract class QuoteDatabase : RoomDatabase() {
     abstract fun getQuoteDao(): QuoteDao
-}
+}//in order to clear DB we need to clear apk data through emulator
